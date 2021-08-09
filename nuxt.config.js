@@ -5,9 +5,10 @@ const config = require("./content/data/config.json")
 /* eslin-enable */
 const dynamicRoutes = getDynamicPaths({
   '/blog': 'content/blog-posts/*.md',
- });
+});
 
 export default {
+  target: 'static',
   mode: 'universal',
   /*
    ** Headers of the page
@@ -55,14 +56,14 @@ export default {
     /*
      ** Using frontmatter-markdown-loader here to parse md files
      */
-    extend(config, ctx) {  
+    extend(config, ctx) {
       config.module.rules.push(
-      {
+        {
           test: /\.md$/,
           loader: "frontmatter-markdown-loader",
           include: path.resolve(__dirname, "content/blog-posts")
-      })
-    }    
+        })
+    }
   },
   generate: {
     routes: dynamicRoutes
